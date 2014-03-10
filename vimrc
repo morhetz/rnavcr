@@ -164,6 +164,8 @@ if has('gui_running')
 	call s:using('guiconfig.local')
 endif
 
+call s:setcolorscheme('gruvbox')
+
 call s:using('vimrc.local')
 
 " vim: set sw=3 ts=3 sts=3 noet tw=80 ft=vim fdm=marker:
