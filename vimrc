@@ -118,14 +118,30 @@ function! s:setcolorscheme(scheme)
 	endif
 endfunction
 
-"function! s:addrtp(scheme)
-"   let path = 'colors/' . a:scheme . '.vim'
-"	if !empty(globpath(&rtp, path))
-"		exe 'colorscheme' a:scheme
-"	endif
-"endfunction
+function! s:addrtpbefore(path)
+	let fullpath = s:rnavcr_cfg[a:path]
+	if isdirectory(expand(fullpath))
+		exe 'set rtp^=' . fullpath
+	endif
+endfunction
+
+function! s:addrtpafter(path)
+	let fullpath = s:rnavcr_cfg[a:path]
+	if isdirectory(expand(fullpath))
+		exe 'set rtp+=' . fullpath
+	endif
+endfunction
+
+function! RnavcrGet(opt)
+	return s:rnavcr_cfg[a:opt]
+endfunction
 
 " }}}
+
+call s:addrtpbefore('.rnavcr')
+call s:addrtpbefore('.vim')
+call s:addrtpafter('.after')
+call s:addrtpafter('.after.local')
 
 call s:using('before')
 call s:using('before.local')
@@ -134,19 +150,16 @@ call s:using('before.local')
 
 filetype off
 
-exe 'set rtp+=' . g:rnavcr_vundle_dir
-call vundle#rc(g:rnavcr_bundle_dir)
+"call s:addrtpbefore('.vim')
+"call s:addrtpafter('.after.local')
+call s:addrtpafter('.vundle')
+
+call vundle#rc(RnavcrGet('.bundle'))
 
 call s:using('bundles')
 call s:using('bundles.local')
 
 filetype plugin indent on
-
-"exe 'set rtp^=' . '.rnavcr'
-"exe 'set rtp^=' . '.vim'
-
-"exe 'set rtp+=' . '.after'
-"exe 'set rtp+=' . '.after.local'
 
 " }}}
 
