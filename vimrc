@@ -18,8 +18,8 @@ endfunction
 
 call s:define('g:rnavcr_dotvim_dir', '~/.vim')
 
-call s:define('g:rnavcr_root_dir', g:rnavcr_dotvim_dir . '/rnavcr')
 call s:define('g:rnavcr_bundle_dir', g:rnavcr_dotvim_dir . '/bundle')
+call s:define('g:rnavcr_root_dir', g:rnavcr_bundle_dir . '/rnavcr')
 call s:define('g:rnavcr_vundle_dir', g:rnavcr_bundle_dir . '/vundle')
 
 call s:define('g:rnavcr_backup_dir', g:rnavcr_dotvim_dir . '/backup')
