@@ -15,19 +15,22 @@ function s:define(opt, val)
 endfunction
 
 " Warmup: {{{
+let g:rnavcr_me = expand('<sfile>:p')
 
+call s:define('g:rnavcr_root_dir', fnamemodify(g:rnavcr_me, ':h'))
 call s:define('g:rnavcr_dotvim_dir', '~/.vim')
+call s:define('g:rnavcr_plugged_dir', g:rnavcr_dotvim_dir . '/plugged')
 
-call s:define('g:rnavcr_bundle_dir', g:rnavcr_dotvim_dir . '/bundle')
-call s:define('g:rnavcr_root_dir', g:rnavcr_bundle_dir . '/rnavcr')
-call s:define('g:rnavcr_vundle_dir', g:rnavcr_bundle_dir . '/vundle')
+let g:rnavcr_same_dirs = (g:rnavcr_root_dir == g:rnavcr_dotvim_dir)
+let g:rnavcr_is_plugged = (g:rnavcr_plugged_dir
+                                     \ == fnamemodify(g:rnavcr_root_dir, ':h'))
 
 call s:define('g:rnavcr_backup_dir', g:rnavcr_dotvim_dir . '/backup')
 call s:define('g:rnavcr_swap_dir', g:rnavcr_dotvim_dir . '/swap')
 call s:define('g:rnavcr_undo_dir', g:rnavcr_dotvim_dir . '/undo')
 
 call s:define('g:rnavcr_file_ext', '')
-if g:rnavcr_root_dir == g:rnavcr_dotvim_dir
+if g:rnavcr_same_dirs
 	call s:define('g:rnavcr_local_postfix', '.local')
 else
 	call s:define('g:rnavcr_local_postfix', '')
@@ -39,7 +42,7 @@ call s:define('g:rnavcr_after_local_dir', g:rnavcr_dotvim_dir . '/after'
 
 call s:define('g:rnavcr_before', g:rnavcr_root_dir . '/before'
                                                          \ . g:rnavcr_file_ext)
-call s:define('g:rnavcr_bundles', g:rnavcr_root_dir . '/bundles'
+call s:define('g:rnavcr_plugs', g:rnavcr_root_dir . '/plugs'
                                                          \ . g:rnavcr_file_ext)
 call s:define('g:rnavcr_settings', g:rnavcr_root_dir . '/settings'
                                                          \ . g:rnavcr_file_ext)
@@ -52,7 +55,7 @@ call s:define('g:rnavcr_guiconfig', g:rnavcr_root_dir . '/guiconfig'
 
 call s:define('g:rnavcr_before_local', g:rnavcr_dotvim_dir . '/before'
                                 \ . g:rnavcr_local_postfix . g:rnavcr_file_ext)
-call s:define('g:rnavcr_bundles_local', g:rnavcr_dotvim_dir . '/bundles'
+call s:define('g:rnavcr_plugs_local', g:rnavcr_dotvim_dir . '/plugs'
                                 \ . g:rnavcr_local_postfix . g:rnavcr_file_ext)
 call s:define('g:rnavcr_settings_local', g:rnavcr_dotvim_dir . '/settings'
                                 \ . g:rnavcr_local_postfix . g:rnavcr_file_ext)
@@ -69,20 +72,19 @@ let s:rnavcr_cfg = {}
 
 let s:rnavcr_cfg['.vim'] = g:rnavcr_dotvim_dir
 let s:rnavcr_cfg['.rnavcr'] = g:rnavcr_root_dir
-let s:rnavcr_cfg['.bundle'] = g:rnavcr_bundle_dir
-let s:rnavcr_cfg['.vundle'] = g:rnavcr_vundle_dir
+let s:rnavcr_cfg['.plugged'] = g:rnavcr_plugged_dir
 let s:rnavcr_cfg['.after'] = g:rnavcr_after_dir
 let s:rnavcr_cfg['.after.local'] = g:rnavcr_after_local_dir
 
 let s:rnavcr_cfg['before'] = g:rnavcr_before
-let s:rnavcr_cfg['bundles'] = g:rnavcr_bundles
+let s:rnavcr_cfg['plugs'] = g:rnavcr_plugs
 let s:rnavcr_cfg['settings'] = g:rnavcr_settings
 let s:rnavcr_cfg['autocmds'] = g:rnavcr_autocmds
 let s:rnavcr_cfg['mappings'] = g:rnavcr_mappings
 let s:rnavcr_cfg['guiconfig'] = g:rnavcr_guiconfig
 
 let s:rnavcr_cfg['before.local'] = g:rnavcr_before_local
-let s:rnavcr_cfg['bundles.local'] = g:rnavcr_bundles_local
+let s:rnavcr_cfg['plugs.local'] = g:rnavcr_plugs_local
 let s:rnavcr_cfg['settings.local'] = g:rnavcr_settings_local
 let s:rnavcr_cfg['autocmds.local'] = g:rnavcr_autocmds_local
 let s:rnavcr_cfg['mappings.local'] = g:rnavcr_mappings_local
@@ -91,15 +93,9 @@ let s:rnavcr_cfg['vimrc.local'] = g:rnavcr_vimrc_local
 
 " }}}
 
-function! s:isOsx()
-	return has('macunix')
-endfunction
-function! s:isLinux()
-	return has('unix') && !has('macunix') && !has('win32unix')
-endfunction
-function! s:isWindows()
-	return (has('win16') || has('win32') || has('win64'))
-endfunction
+let s:is_osx = has('macunix') || has('mac')
+let s:is_linux = has('unix') && !has('macunix') && !has('win32unix')
+let s:is_win = has('win16') || has('c')
 
 function! s:exists(path)
 	return filereadable(expand(a:path))
@@ -146,20 +142,14 @@ call s:addrtpafter('.after.local')
 call s:using('before')
 call s:using('before.local')
 
-" Bundles: {{{
+" Plugs: {{{
 
-filetype off
+call plug#begin(RnavcrGet('.plugged'))
 
-"call s:addrtpbefore('.vim')
-"call s:addrtpafter('.after.local')
-call s:addrtpafter('.vundle')
+call s:using('plugs')
+call s:using('plugs.local')
 
-call vundle#rc(RnavcrGet('.bundle'))
-
-call s:using('bundles')
-call s:using('bundles.local')
-
-filetype plugin indent on
+call plug#end()
 
 " }}}
 
