@@ -8,6 +8,10 @@ scriptencoding utf-8
 
 " Predefinitions: {{{
 
+let s:is_osx = has('macunix') || has('mac')
+let s:is_linux = has('unix') && !has('macunix') && !has('win32unix')
+let s:is_win = has('win16') || has('win32') || has('win64')
+
 function s:define(opt, val)
 	if !exists(a:opt)
 		exe 'let' a:opt . '="' . a:val . '"'
@@ -15,6 +19,11 @@ function s:define(opt, val)
 endfunction
 
 " Warmup: {{{
+
+if s:is_win
+	set shellslash
+endif
+
 let g:rnavcr_me = expand('<sfile>:p')
 
 call s:define('g:rnavcr_root_dir', fnamemodify(g:rnavcr_me, ':h'))
@@ -93,9 +102,6 @@ let s:rnavcr_cfg['vimrc.local'] = g:rnavcr_vimrc_local
 
 " }}}
 
-let s:is_osx = has('macunix') || has('mac')
-let s:is_linux = has('unix') && !has('macunix') && !has('win32unix')
-let s:is_win = has('win16') || has('c')
 
 function! s:exists(path)
 	return filereadable(expand(a:path))
