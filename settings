@@ -25,6 +25,7 @@ set linebreak
 set showbreak=↪
 set sidescroll=1
 set sidescrolloff=10
+set display=lastline
 set lazyredraw
 set list
 set listchars=tab:▸\ ,trail:·,eol:¬,extends:❯,precedes:❮

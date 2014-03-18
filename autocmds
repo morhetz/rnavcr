@@ -1,0 +1,27 @@
+if !has('autocmd')
+	finish
+endif
+
+" Cursorline and Relativenumbers {{{
+" Only show this in the current window and in normal mode.
+
+augroup cline
+	autocmd!
+	autocmd WinLeave,InsertEnter * set nocursorline norelativenumber
+	autocmd WinEnter,InsertLeave * set cursorline relativenumber
+augroup END
+
+" }}}
+" Trailing whitespace {{{
+" Only shown when not in insert mode
+
+augroup trailing
+	autocmd!
+	autocmd InsertEnter * :set listchars-=trail:·
+	autocmd InsertLeave * :set listchars+=trail:·
+augroup END
+
+" }}}
+
+
+" vim: set sw=3 ts=3 sts=3 noet tw=80 ft=vim fdm=marker:

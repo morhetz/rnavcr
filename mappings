@@ -1,0 +1,122 @@
+" Disable arrows: {{{
+
+noremap <left> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <right> <nop>
+
+" }}}
+" Ctrl-A, Ctrl-E mappings: {{{
+
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
+" }}}
+" Make Y behave like other capitals: {{{
+
+nnoremap Y y$
+
+" }}}
+" Improve up/down movement on wrapped lines: {{{
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" }}}
+" Sane regexes: {{{
+
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+nnoremap :s/ :s/\v
+
+" }}}
+" Use <Leader>Space to toggle the highlight search: {{{
+
+nnoremap <Leader><Space> :set hlsearch! hlsearch?<CR>
+
+" }}}
+" Auto center: {{{
+
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
+nnoremap <silent> <C-o> <C-o>zz
+nnoremap <silent> <C-i> <C-i>zz
+
+" }}}
+" Begining & End of line: {{{
+
+noremap H ^
+noremap L $
+vnoremap L g_
+
+" }}}
+" Force Saving Files that Require Root Permission: {{{
+
+cmap w!! w !sudo tee % >/dev/null
+
+" }}}
+" Space to toggle folds: {{{
+
+nnoremap <space> za
+vnoremap <space> za
+
+" }}}
+" Make zO recursively open whatever top level fold we're in: {{{
+
+nnoremap zO zCzO
+
+" }}}
+" Keep the cursor in place while joining lines: {{{
+
+nnoremap J mzJ`z
+
+" }}}
+" Select entire buffer: {{{
+
+nnoremap vaa ggvGg_
+nnoremap Vaa ggVG
+
+" }}}
+" Syn stack: {{{
+
+nmap <leader>p :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" }}}
+" Remap semicolon: {{{
+
+nnoremap ; :
+vnoremap ; :
+
+"nnoremap ;; ;
+"vnoremap ;; ;
+
+"nnoremap ,, ,
+"vnoremap ,, ,
+
+"sneak
+"nmap ;; <Plug>SneakNext
+"nmap ,, <Plug>SneakPrevious
+"nmap s <Plug>SneakForward
+"nmap S <Plug>SneakBackward
+"xmap s <Plug>VSneakForward
+"xmap S <Plug>VSneakBackward
+
+" }}}
+
+" vim: set sw=3 ts=3 sts=3 noet tw=80 ft=vim fdm=marker:

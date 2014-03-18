@@ -1,5 +1,11 @@
 " Init: {{{
 
+if exists('g:rnavcr_loaded') || &compatible
+	finish
+else
+	let g:rnavcr_loaded = 1
+endif
+
 set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
@@ -21,6 +27,7 @@ endfunction
 " Warmup: {{{
 
 if s:is_win
+	let s:shellsl=&shellslash
 	set shellslash
 endif
 
@@ -99,6 +106,12 @@ let s:rnavcr_cfg['autocmds.local'] = g:rnavcr_autocmds_local
 let s:rnavcr_cfg['mappings.local'] = g:rnavcr_mappings_local
 let s:rnavcr_cfg['guiconfig.local'] = g:rnavcr_guiconfig_local
 let s:rnavcr_cfg['vimrc.local'] = g:rnavcr_vimrc_local
+
+if s:is_win
+	if !s:shellsl
+		set noshellslash
+	endif
+endif
 
 " }}}
 
