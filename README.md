@@ -1,7 +1,7 @@
 rnavcr
 ======
 
-Rnavcr's not another vm config repo
+Rnavcr's not another vim config repo
 
 ## Installing
 
