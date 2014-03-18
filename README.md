@@ -6,7 +6,8 @@ Rnavcr's not another vm config repo
 ## Installing
 
 ```
-$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-$ git clone https://github.com/morhetz/rnavcr.git ~/.vim/bundle/rnavcr
-$ vim +BundleInstall! +BundleClean +q
+$ mkdir -p ~/.vim/autoload
+$ curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
+$ git clone https://github.com/morhetz/rnavcr.git ~/.vim/plugged/rnavcr
+$ vim +PlugInstall +q
 ```
