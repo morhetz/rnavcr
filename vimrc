@@ -175,8 +175,10 @@ call plug#end()
 call s:using('settings')
 call s:using('settings.local')
 
-call s:using('autocmds')
-call s:using('autocmds.local')
+if has('autocmd')
+	call s:using('autocmds')
+	call s:using('autocmds.local')
+endif
 
 call s:using('mappings')
 call s:using('mappings.local')

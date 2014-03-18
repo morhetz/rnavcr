@@ -1,9 +1,33 @@
-" Disable arrows: {{{
+" Nop keys: {{{
 
-noremap <left> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <right> <nop>
+nnoremap <left> <nop>
+inoremap <left> <nop>
+nnoremap <up> <nop>
+inoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <down> <nop>
+nnoremap <right> <nop>
+inoremap <right> <nop>
+
+nnoremap <f1> <nop>
+inoremap <f1> <nop>
+
+nnoremap Q <nop>
+nnoremap K <nop>
+
+" }}}
+" Fix PgUp, PgDown: {{{
+
+nnoremap <pageup> <C-U>
+nnoremap <pagedown> <C-D>
+inoremap <pageup> <C-O><C-U>
+inoremap <pagedown> <C-O><C-D>
+
+" }}}
+" Match % mapping: {{{
+
+nnoremap <bs> %
+vnoremap <bs> %
 
 " }}}
 " Ctrl-A, Ctrl-E mappings: {{{
@@ -36,9 +60,9 @@ vnoremap ? ?\v
 nnoremap :s/ :s/\v
 
 " }}}
-" Use <Leader>Space to toggle the highlight search: {{{
+" Use <leader>Space to toggle the highlight search: {{{
 
-nnoremap <Leader><Space> :set hlsearch! hlsearch?<CR>
+nnoremap <leader><Space> :set hlsearch! hlsearch?<CR>
 
 " }}}
 " Auto center: {{{
@@ -91,10 +115,10 @@ nnoremap Vaa ggVG
 
 nmap <leader>p :call <SID>SynStack()<CR>
 function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
 " }}}
@@ -103,19 +127,10 @@ endfunc
 nnoremap ; :
 vnoremap ; :
 
-"nnoremap ;; ;
-"vnoremap ;; ;
+" }}}
+" Switch between the last two files: {{{
 
-"nnoremap ,, ,
-"vnoremap ,, ,
-
-"sneak
-"nmap ;; <Plug>SneakNext
-"nmap ,, <Plug>SneakPrevious
-"nmap s <Plug>SneakForward
-"nmap S <Plug>SneakBackward
-"xmap s <Plug>VSneakForward
-"xmap S <Plug>VSneakBackward
+nnoremap <leader><leader> <c-^>
 
 " }}}
 
