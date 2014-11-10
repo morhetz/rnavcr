@@ -115,7 +115,6 @@ endif
 
 " }}}
 
-
 function! s:exists(path)
 	return filereadable(expand(a:path))
 endfunction
@@ -153,8 +152,11 @@ endfunction
 
 " }}}
 
-call s:addrtpbefore('.rnavcr')
+if !g:rnavcr_is_plugged
+	call s:addrtpbefore('.rnavcr')
+endif
 call s:addrtpbefore('.vim')
+
 call s:addrtpafter('.after')
 call s:addrtpafter('.after.local')
 

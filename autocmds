@@ -26,5 +26,12 @@ autocmd BufReadPost *
 	\ endif
 
 " }}}
+" Pentadactyl filetype: {{{
+
+augroup filetypedetect
+    au! BufRead,BufNewFile .pentadactylrc setfiletype vim
+augroup END
+
+" }}}
 
 " vim: set sw=3 ts=3 sts=3 noet tw=80 ft=vim fdm=marker:

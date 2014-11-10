@@ -1,27 +1,27 @@
 " Nop keys: {{{
 
-nnoremap <left> <nop>
-inoremap <left> <nop>
-nnoremap <up> <nop>
-inoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <down> <nop>
-nnoremap <right> <nop>
-inoremap <right> <nop>
+"nnoremap <Space> <nop>
 
-nnoremap <f1> <nop>
-inoremap <f1> <nop>
+" dropped due to vim-schlepp
+" nnoremap <left> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <right> <nop>
+"
 
-nnoremap Q <nop>
-nnoremap K <nop>
+noremap <f1> <nop>
+
+" map Q to something useful
+noremap Q gq
+noremap K <nop>
 
 " }}}
 " Fix PgUp, PgDown: {{{
 
-nnoremap <pageup> <C-U>
-nnoremap <pagedown> <C-D>
-inoremap <pageup> <C-O><C-U>
-inoremap <pagedown> <C-O><C-D>
+nnoremap <pageup> <c-u>
+nnoremap <pagedown> <c-d>
+inoremap <pageup> <c-o><c-u>
+inoremap <pagedown> <c-o><c-d>
 
 " }}}
 " Match % mapping: {{{
@@ -32,15 +32,17 @@ vnoremap <bs> %
 " }}}
 " Ctrl-A, Ctrl-E mappings: {{{
 
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
+" dropped due to vim-rsi
+" inoremap <c-a> <esc>I
+" inoremap <c-e> <esc>A
+" cnoremap <c-a> <home>
+" cnoremap <c-e> <end>
 
 " }}}
 " Make Y behave like other capitals: {{{
 
-nnoremap Y y$
+" droppped due to easyclip
+"nnoremap Y y$
 
 " }}}
 " Improve up/down movement on wrapped lines: {{{
@@ -62,7 +64,7 @@ nnoremap :s/ :s/\v
 " }}}
 " Use <leader>Space to toggle the highlight search: {{{
 
-nnoremap <leader><Space> :set hlsearch! hlsearch?<CR>
+"nnoremap <leader><space> :set hlsearch! hlsearch?<CR>
 
 " }}}
 " Auto center: {{{
@@ -86,13 +88,14 @@ vnoremap L g_
 " }}}
 " Force Saving Files that Require Root Permission: {{{
 
-cmap w!! w !sudo tee % >/dev/null
+" droppped due to vim-eunuch
+"cmap w!! w !sudo tee % >/dev/null
 
 " }}}
 " Space to toggle folds: {{{
 
-nnoremap <space> za
-vnoremap <space> za
+"nnoremap <space> za
+"vnoremap <space> za
 
 " }}}
 " Make zO recursively open whatever top level fold we're in: {{{
@@ -130,7 +133,8 @@ vnoremap ; :
 " }}}
 " Switch between the last two files: {{{
 
-nnoremap <leader><leader> <c-^>
+" nnoremap ,, <c-^>
+" nnoremap <leader>o :CtrlP<cr>
 
 " }}}
 

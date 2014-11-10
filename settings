@@ -80,7 +80,7 @@ autocmd GUIEnter * set noerrorbells visualbell t_vb=
 " }}}
 " Selection: {{{
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " }}}
 " Editing: {{{
@@ -98,12 +98,12 @@ set matchtime=2
 " }}}
 " Tabs: {{{
 
-set tabstop=3
-set shiftwidth=3
+set tabstop=2
+set shiftwidth=2
 set smarttab
-set softtabstop=3
+set softtabstop=2
 set shiftround
-set noexpandtab
+set expandtab
 set autoindent
 set nosmartindent
 set nocindent
@@ -168,6 +168,7 @@ set gdefault
 " Leader: {{{
 
 let mapleader = ','
+" let mapleader = "\<Space>"
 let maplocalleader = '\\'
 
 " }}}

@@ -4,4 +4,68 @@ endif
 
 Plug 'morhetz/gruvbox'
 
+" Visual Candy: {{{
+
+Plug 'amdt/vim-niji'
+Plug 'bling/vim-airline'
+
+" }}}
+" Version Control: {{{
+
+" Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+Plug 'ludovicchabant/vim-lawrencium'
+
+" }}}
+
+Plug 'justinmk/vim-sneak'
+Plug 'junegunn/vim-easy-align'
+Plug 'tomtom/tcomment_vim'
+Plug 'mbbill/undotree'
+Plug 'dyng/ctrlsf.vim'
+Plug 'svermeulen/vim-easyclip'
+Plug 'mhinz/vim-startify'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-expand-region'
+Plug 'scrooloose/syntastic'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-vinegar'
+
+""" Plug 'ervandew/supertab'
+""" Plug 'SirVer/ultisnips'
+""" Plug 'zhaocai/GoldenView.Vim'
+""" Plug 'majutsushi/tagbar'
+
+" Plug 'zirrostig/vim-schlepp'
+" drag-visuals
+
+" *** indentline (dont really needed)
+
+" goyo, ycm, welle (tgts)
+
+" ??? notetaking gtd
+
+Plug 'sheerun/vim-polyglot'
+
+" Clojure: {{{
+
+Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+
+" }}}
+
 " vim: set sw=3 ts=3 sts=3 noet tw=80 ft=vim fdm=marker:
