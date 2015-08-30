@@ -37,10 +37,17 @@ augroup filetypedetect
 augroup END
 
 " }}}
-" Spellchek markdown: {{{
+" Spellcheck markdown: {{{
 
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 " }}}
+" Open folds by default: {{{
 
-" vim: set sw=3 ts=3 sts=3 et tw=80 ft=vim fdm=marker:
+autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
+
+" }}}
+
+au BufRead,BufNewFile *.es6 set filetype=javascript
+
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

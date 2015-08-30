@@ -1,12 +1,11 @@
 " Init: {{{
 
 if exists('g:rnavcr_loaded') || &compatible
-   finish
+  finish
 else
-   let g:rnavcr_loaded = 1
+  let g:rnavcr_loaded = 1
 endif
 
-set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -19,56 +18,56 @@ let s:is_linux = has('unix') && !has('macunix') && !has('win32unix')
 let s:is_win = has('win16') || has('win32') || has('win64')
 
 function s:define(opt, val)
-   if !exists(a:opt)
-      exe 'let' a:opt . '="' . a:val . '"'
-   endif
+  " initialize variable with 'val' if it wasn't defined earlier
+  if !exists(a:opt)
+    exe 'let' a:opt . '="' . a:val . '"'
+  endif
 endfunction
 
 function s:define_dotv_dir(opt, val)
-   call s:define(a:opt, g:rnavcr_dotvim_dir . a:val . g:rnavcr_local_postfix)
+  call s:define(a:opt, g:rnavcr_dotvim_dir . a:val . g:rnavcr_local_postfix)
 endfunction
 
 function s:define_dotv_file(opt, val)
-   call s:define(a:opt, g:rnavcr_dotvim_dir . a:val . g:rnavcr_local_postfix . g:rnavcr_file_ext)
+  call s:define(a:opt, g:rnavcr_dotvim_dir . a:val . g:rnavcr_local_postfix . g:rnavcr_file_ext)
 endfunction
 
 function s:define_root_dir(opt, val)
-   call s:define(a:opt, g:rnavcr_root_dir . a:val)
+  call s:define(a:opt, g:rnavcr_root_dir . a:val)
 endfunction
 
 function s:define_root_file(opt, val)
-   call s:define(a:opt, g:rnavcr_root_dir . a:val . g:rnavcr_file_ext)
+  call s:define(a:opt, g:rnavcr_root_dir . a:val . g:rnavcr_file_ext)
 endfunction
-
-
 
 " Warmup: {{{
 
 if s:is_win
-   let s:shellsl=&shellslash
-   set shellslash
+  let s:shellsl=&shellslash
+  set shellslash
 endif
 
 let g:rnavcr_me = expand('<sfile>')
 
 call s:define('g:rnavcr_root_dir', fnamemodify(g:rnavcr_me, ':h'))
-call s:define('g:rnavcr_dotvim_dir', '~/.vim')
+call s:define('g:rnavcr_dotvim_dir', '~/.config/vim')
 call s:define('g:rnavcr_plugged_dir', g:rnavcr_dotvim_dir . '/plugged')
 
 let g:rnavcr_same_dirs = (g:rnavcr_root_dir == g:rnavcr_dotvim_dir)
 let g:rnavcr_is_plugged = (expand(g:rnavcr_plugged_dir)
-                           \ == fnamemodify(g:rnavcr_root_dir, ':h'))
+                          \ == fnamemodify(g:rnavcr_root_dir, ':h'))
 
 call s:define('g:rnavcr_session_dir', g:rnavcr_dotvim_dir . '/session')
 call s:define('g:rnavcr_backup_dir', g:rnavcr_dotvim_dir . '/backup')
 call s:define('g:rnavcr_swap_dir', g:rnavcr_dotvim_dir . '/swap')
 call s:define('g:rnavcr_undo_dir', g:rnavcr_dotvim_dir . '/undo')
 
-call s:define('g:rnavcr_file_ext', '')
+call s:define('g:rnavcr_file_ext', '.vim')
+
 if g:rnavcr_same_dirs
-   call s:define('g:rnavcr_local_postfix', '.local')
+  call s:define('g:rnavcr_local_postfix', '.local')
 else
-   call s:define('g:rnavcr_local_postfix', '')
+  call s:define('g:rnavcr_local_postfix', '')
 endif
 
 call s:define_root_dir('g:rnavcr_after_dir', '/after')
@@ -86,7 +85,7 @@ call s:define_dotv_file('g:rnavcr_settings_local', '/settings')
 call s:define_dotv_file('g:rnavcr_autocmds_local', '/autocmds')
 call s:define_dotv_file('g:rnavcr_mappings_local', '/mappings')
 call s:define_dotv_file('g:rnavcr_guiconfig_local', '/guiconfig')
-call s:define_dotv_file('g:rnavcr_vimrc_local', '/vimrc')
+call s:define_dotv_file('g:rnavcr_vimrc_local', '/rc')
 
 let s:rnavcr_cfg = {}
 
@@ -112,52 +111,61 @@ let s:rnavcr_cfg['guiconfig.local'] = g:rnavcr_guiconfig_local
 let s:rnavcr_cfg['vimrc.local'] = g:rnavcr_vimrc_local
 
 if s:is_win
-   if !s:shellsl
-      set noshellslash
-   endif
+  if !s:shellsl
+    set noshellslash
+  endif
 endif
 
 " }}}
 
 function! s:exists(path)
-   return filereadable(expand(a:path))
+  " check file existence
+  return filereadable(expand(a:path))
 endfunction
+
 function! s:using(path)
-   let fullpath = s:rnavcr_cfg[a:path]
-   if s:exists(fullpath)
-      exe 'source' fullpath
-   endif
+  " source ranvcr_cfg file if it exists
+  let fullpath = s:rnavcr_cfg[a:path]
+  if s:exists(fullpath)
+    exe 'source' fullpath
+  elseif a:path !~ "\.local$"
+    echo 'File not found ' . fullpath
+  endif
 endfunction
 
 function! s:setcolorscheme(scheme)
-   let path = 'colors/' . a:scheme . '.vim'
-   if !empty(globpath(&rtp, path))
-      exe 'colorscheme' a:scheme
-   endif
+  " use colorscheme if it exists
+  let path = 'colors/' . a:scheme . '.vim'
+  if !empty(globpath(&rtp, path))
+    exe 'colorscheme' a:scheme
+  else
+    echo 'Colorscheme not found ' . a:scheme
+  endif
 endfunction
 
 function! s:addrtpbefore(path)
-   let fullpath = s:rnavcr_cfg[a:path]
-   if isdirectory(expand(fullpath))
-      exe 'set rtp^=' . fullpath
-   endif
+  let fullpath = s:rnavcr_cfg[a:path]
+  if isdirectory(expand(fullpath))
+    exe 'set rtp^=' . fullpath
+  endif
 endfunction
 
 function! s:addrtpafter(path)
-   let fullpath = s:rnavcr_cfg[a:path]
-   if isdirectory(expand(fullpath))
-      exe 'set rtp+=' . fullpath
-   endif
+  let fullpath = s:rnavcr_cfg[a:path]
+  if isdirectory(expand(fullpath))
+    exe 'set rtp+=' . fullpath
+  endif
 endfunction
 
 function! RnavcrGet(opt)
-   return s:rnavcr_cfg[a:opt]
+  return s:rnavcr_cfg[a:opt]
 endfunction
 
 " }}}
 
 if !g:rnavcr_is_plugged
-   call s:addrtpbefore('.rnavcr')
+  " rnavcr would be added to rtp by plug if it's plugged already
+  call s:addrtpbefore('.rnavcr')
 endif
 call s:addrtpbefore('.vim')
 
@@ -182,20 +190,20 @@ call s:using('settings')
 call s:using('settings.local')
 
 if has('autocmd')
-   call s:using('autocmds')
-   call s:using('autocmds.local')
+  call s:using('autocmds')
+  call s:using('autocmds.local')
 endif
 
 call s:using('mappings')
 call s:using('mappings.local')
 
 if has('gui_running')
-   call s:using('guiconfig')
-   call s:using('guiconfig.local')
+  call s:using('guiconfig')
+  call s:using('guiconfig.local')
 endif
 
 call s:setcolorscheme('gruvbox')
 
 call s:using('vimrc.local')
 
-" vim: set sw=3 ts=3 sts=3 et tw=80 ft=vim fdm=marker:
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

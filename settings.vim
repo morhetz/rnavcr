@@ -40,6 +40,7 @@ set background=dark
 set hlsearch
 set cursorline
 set colorcolumn=+1
+set synmaxcol=128
 
 " }}}
 " Windows: {{{
@@ -71,7 +72,6 @@ set guioptions=
 
 set shortmess=atI
 set showcmd
-" set showmode
 set noshowmode
 set ruler
 
@@ -81,7 +81,7 @@ autocmd GUIEnter * set noerrorbells visualbell t_vb=
 " }}}
 " Selection: {{{
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " }}}
 " Editing: {{{
@@ -173,4 +173,4 @@ let maplocalleader = '\\'
 
 " }}}
 
-" vim: set sw=3 ts=3 sts=3 et tw=80 ft=vim fdm=marker:
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

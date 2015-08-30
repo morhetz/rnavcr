@@ -18,13 +18,13 @@ augroup incsearch-keymap
 augroup END
 
 function! s:incsearch_keymap()
-   IncSearchNoreMap <C-f> <Over>(incsearch-scroll-f)
-   IncSearchNoreMap <C-b> <Over>(incsearch-scroll-b)
+  IncSearchNoreMap <C-f> <Over>(incsearch-scroll-f)
+  IncSearchNoreMap <C-b> <Over>(incsearch-scroll-b)
 
-   IncSearchNoreMap <C-n> <Over>(incsearch-next)
-   IncSearchNoreMap <C-p> <Over>(incsearch-prev)
+  IncSearchNoreMap <C-n> <Over>(incsearch-next)
+  IncSearchNoreMap <C-p> <Over>(incsearch-prev)
 
-   IncSearchNoreMap <tab> <Over>(buffer-complete)
+  IncSearchNoreMap <tab> <Over>(buffer-complete)
 endfunction
 
-" vim: set sw=3 ts=3 sts=3 et tw=80 ft=vim fdm=marker:
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:

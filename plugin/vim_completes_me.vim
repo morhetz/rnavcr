@@ -5,4 +5,4 @@
 
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : ""
 
-" vim: set sw=3 ts=3 sts=3 et tw=80 ft=vim fdm=marker:
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
