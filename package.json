@@ -18,7 +18,6 @@
     "matchit": "vim-scripts/matchit.zip",
     "tagbar": "majutsushi/tagbar",
     "tcomment_vim": "tomtom/tcomment_vim",
-    "test-vim-plugin": "morhetz/test-vim-plugin",
     "undotree": "mbbill/undotree",
     "vader": "junegunn/vader.vim",
     "vim-dirvish": "justinmk/vim-dirvish",
