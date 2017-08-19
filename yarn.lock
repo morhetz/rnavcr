@@ -54,6 +54,12 @@ tcomment_vim@tomtom/tcomment_vim:
   version "0.0.0"
   resolved "https://codeload.github.com/tomtom/tcomment_vim/tar.gz/7cba1bbc2f8f1da0a854ae80eefc74f3a8402dab"
 
+test-vim-plugin@morhetz/test-vim-plugin:
+  version "1.0.0"
+  resolved "https://codeload.github.com/morhetz/test-vim-plugin/tar.gz/839c964eba2d4ee0f16403d3ead2235182c9d613"
+  dependencies:
+    vimagit jreybert/vimagit
+
 undotree@mbbill/undotree:
   version "0.0.0"
   resolved "https://codeload.github.com/mbbill/undotree/tar.gz/8f77072ad6818437c78cececba7d4835f67368be"
@@ -133,3 +139,7 @@ vim-surround@tpope/vim-surround:
 vim-unimpaired@tpope/vim-unimpaired:
   version "0.0.0"
   resolved "https://codeload.github.com/tpope/vim-unimpaired/tar.gz/3a7759075cca5b0dc29ce81f2747489b6c8e36a7"
+
+vimagit@jreybert/vimagit:
+  version "0.0.0"
+  resolved "https://codeload.github.com/jreybert/vimagit/tar.gz/0549731101b8c341d9732d3e9d74c6ba09bbf3ea"
