@@ -30,13 +30,6 @@ autocmd BufReadPost *
          \ endif
 
 " }}}
-" Pentadactyl filetype: {{{
-
-augroup filetypedetect
-   au! BufRead,BufNewFile .pentadactylrc setfiletype vim
-augroup END
-
-" }}}
 " Spellcheck markdown: {{{
 
 autocmd BufRead,BufNewFile *.md setlocal spell

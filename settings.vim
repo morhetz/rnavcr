@@ -36,7 +36,7 @@ set numberwidth=4
 " }}}
 " Highlights: {{{
 
-" set background=dark
+set background=dark
 set hlsearch
 set cursorline
 set colorcolumn=+1
@@ -164,9 +164,6 @@ set encoding=utf-8
 
 set virtualedit=block,onemore
 set gdefault
-
-set diffopt+=vertical
-set fillchars=vert:\│
 
 " }}}
 " Leader: {{{

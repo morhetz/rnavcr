@@ -1,3 +1,7 @@
+" if !exists('g:loaded_over')
+"   finish
+" endif
+
 cabbrev %s OverCommandLine<cr>%s
 cabbrev '<,'>s OverCommandLine<cr>'<,'>s
 

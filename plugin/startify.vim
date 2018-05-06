@@ -1,11 +1,11 @@
 let g:startify_list_order = [
-  \ [' Recent'],
-  \ 'files',
-  \ [' Last modified'],
-  \ 'dir',
-  \ [' Sessions:'],
-  \ 'sessions',
-  \ ]
+   \ [' Recent'],
+   \ 'files',
+   \ [' Last modified'],
+   \ 'dir',
+   \ [' Sessions:'],
+   \ 'sessions',
+   \ ]
 
 " let g:startify_custom_indices = ['a', 'd', 'f', 'g', 'h']
 let g:startify_session_dir = g:rnavcr_session_dir

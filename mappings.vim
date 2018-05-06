@@ -7,21 +7,21 @@
 " nnoremap <up> <nop>
 " nnoremap <down> <nop>
 " nnoremap <right> <nop>
-"
 
-noremap <f1> <nop>
+" noremap <f1> <nop>
 
-" map Q to something useful
+" }}}
+" map Q to something useful: {{{
 nnoremap Q gqap
 vnoremap Q gq
 
 " }}}
 " Fix PgUp, PgDown: {{{
 
-nnoremap <pageup> <c-u>
-nnoremap <pagedown> <c-d>
-inoremap <pageup> <c-o><c-u>
-inoremap <pagedown> <c-o><c-d>
+" nnoremap <pageup> <c-u>
+" nnoremap <pagedown> <c-d>
+" inoremap <pageup> <c-o><c-u>
+" inoremap <pagedown> <c-o><c-d>
 
 " }}}
 " Match % mapping: {{{
